@@ -30,7 +30,7 @@ public class SimpleWebAuthServiceImpl implements AuthService<HttpServletRequest>
     public AuthUser getAuthUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Object sentinelUserObj = session.getAttribute(SimpleWebAuthServiceImpl.WEB_SESSION_KEY);
-        if (sentinelUserObj != null && sentinelUserObj instanceof AuthUser) {
+        if (sentinelUserObj instanceof AuthUser) {
             return (AuthUser) sentinelUserObj;
         }
 
@@ -39,7 +39,7 @@ public class SimpleWebAuthServiceImpl implements AuthService<HttpServletRequest>
 
     public static final class SimpleWebAuthUserImpl implements AuthUser {
 
-        private String username;
+        private final String username;
 
         public SimpleWebAuthUserImpl(String username) {
             this.username = username;
